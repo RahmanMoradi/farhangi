@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'yekan-bakh';
+    src: url('/font/yekan-bakh/YekanBakh-Thin.woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'yekan-bakh';
+    src: url('/font/yekan-bakh/YekanBakh-Light.woff');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'yekan-bakh';
+    src: url('/font/yekan-bakh/YekanBakh-Regular.woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'yekan-bakh';
+    src: url('/font/yekan-bakh/YekanBakh-SemiBold.woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'yekan-bakh';
+    src: url('/font/yekan-bakh/YekanBakh-Bold.woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'yekan-bakh';
+    src: url('/font/yekan-bakh/YekanBakh-Black.woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'kalameh';
+    src: url('/font/kalameh/KalamehWeb(FaNum)-SemiBold.woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'kalameh';
+    src: url('/font/kalameh/KalamehWeb(FaNum)-Bold.woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+.body {
+    margin: 15px 45px 0;
+}
+
+@media (max-width: 768px) {
+    .swiper-button-prev {
+        padding: 17px !important;
+    }
+
+    .swiper-button-prev::after {
+        font-size: 17px !important;
+    }
+
+    .swiper-button-next {
+        padding: 17px !important;
+    }
+
+    .swiper-button-next::after {
+        font-size: 17px !important;
+    }
+}
+
+@media (max-width: 475px) {
+    .body {
+        margin: 10px 15px;
+    }
+}
+
+.SimilarProducts {
+    padding-bottom: 40px !important;
+}
+
+.swiper-scrollbar-drag {
+    background-color: #7E1011 !important;
+}
+
+.swiper-button-prev {
+    background-color: #ffffff;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+    color: #ec008c !important;
+    padding: 12px;
+    --swiper-navigation-size: 40px !important;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.swiper-button-next {
+    background-color: #ffffff;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+    color: #ec008c !important;
+    --swiper-navigation-size: 40px !important;
+    padding: 12px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.swiper-pagination-bullet {
+    width: 10px !important;
+    height: 10px !important;
+    cursor: pointer;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #ec008c !important;
+    cursor: pointer;
+}
+
+.DiscountedProducts .swiper-button-prev {
+    top: 40%;
+    background-color: #ffffff;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+    color: #ec008c !important;
+    padding: 12px;
+    --swiper-navigation-size: 40px !important;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 3px;
+}
+
+.DiscountedProducts .swiper-button-next {
+    top: 40%;
+    background-color: #ffffff;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+    color: #ec008c !important;
+    padding: 12px;
+    --swiper-navigation-size: 40px !important;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 3px;
+}
+
+.MobileProducts .swiper-button-prev {
+    top: 40%;
+    background-color: #ffffff;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+    color: #ec008c !important;
+    padding: 12px;
+    --swiper-navigation-size: 40px !important;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 3px;
+}
+
+.MobileProducts .swiper-button-next {
+    top: 40%;
+    background-color: #ffffff;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+    color: #ec008c !important;
+    padding: 12px;
+    --swiper-navigation-size: 40px !important;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 3px;
+}
+
+.Brands .swiper-button-prev {
+    top: 40%;
+    background-color: #ffffff;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+    color: #ec008c !important;
+    padding: 12px;
+    --swiper-navigation-size: 40px !important;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 3px;
+}
+
+.Brands .swiper-button-next {
+    top: 40%;
+    background-color: #ffffff;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+    color: #ec008c !important;
+    padding: 12px;
+    --swiper-navigation-size: 40px !important;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 3px;
+}
+
+.MuiAccordionDetails-root{
+    padding-top: 0 !important;
+}
+
+.box-shadow {
+    box-shadow: 0 5px 10px 3px #e7e7e7;
+}
