@@ -76,10 +76,10 @@ const Navbar = () => {
               <Image
                 width={75}
                 height={75}
-                src="/images/logo/mobile-logo.svg"
+                src="/images/logo/logo.png"
                 alt="mobile logo"
                 loading="eager"
-                className="w-14"
+                className="w-20"
               />
             </Link>
           </div>
@@ -105,10 +105,10 @@ const Navbar = () => {
                     <Image
                       width={75}
                       height={75}
-                      src="/images/logo/mobile-logo.svg"
+                      src="/images/logo/logo.png"
                       alt="mobile logo"
                       loading="eager"
-                      className="w-14"
+                      className="w-20"
                     />
                   </Link>
                 </div>

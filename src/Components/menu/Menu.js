@@ -1,11 +1,16 @@
+"use client";
+
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import React from "react";
+import { useUser } from "@/Context/UserContext";
 
 function Menu({ select }) {
+  const { token } = useUser();
+
   return (
     <div className="w-full h-16 xl:hidden">
-      <div className="flex z-10 py-1 justify-around fixed bottom-0 left-0 right-0 bg-light_brown_200">
+      <div className="fixed bottom-0 left-0 right-0 z-10 flex justify-around bg-light_brown_200 py-1 font-yekan">
         {/* // ! */}
         <Link
           className={`${
@@ -70,7 +75,7 @@ function Menu({ select }) {
           className={`${
             select === "account" ? "bg-[#FFD4D4] text-main_color" : ""
           } p-2 rounded-lg flex`}
-          href="/account"
+          href={token ? "/account" : "/sign-in"}
         >
           <Icon
             style={{ marginLeft: "7px" }}
