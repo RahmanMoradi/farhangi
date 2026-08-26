@@ -15,6 +15,11 @@ function CommentModal({ setIsOpen, productInfo }) {
   const { showAlert } = useAlert();
 
   const createComment = () => {
+    if (!token) {
+      showAlert("برای ثبت دیدگاه، ابتدا وارد حساب کاربری خود شوید.", "error", 2300);
+      return Promise.resolve(false);
+    }
+
     let body = {
       score,
       text,
@@ -31,9 +36,11 @@ function CommentModal({ setIsOpen, productInfo }) {
       )
       .then((res) => {
         showAlert(res.data.message, "success", 2300);
+        return true;
       })
       .catch((err) => {
         showAlert(err.response.data.message, "error", 2300);
+        return false;
       });
   };
 
@@ -94,10 +101,7 @@ function CommentModal({ setIsOpen, productInfo }) {
         <div className="mt-5">
           <button
             className="bg-main_color text-[#F4F4F4] font-semibold font-yekan p-3 px-12 rounded-2xl ml-3"
-            onClick={() => {
-              createComment();
-              setIsOpen(false);
-            }}
+            onClick={() => createComment().then((created) => created && setIsOpen(false))}
           >
             ثبت دیدگاه
           </button>
