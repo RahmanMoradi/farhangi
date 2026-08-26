@@ -271,7 +271,7 @@ function Details({ params }) {
         {/* Second column */}
         <div className="col-span-1">
           <div className="mt-14">
-            <p className="text-black_12 mt-3">{productInfo?.title}</p>
+            <p className="text-black_12 mt-3 font-yekan">{productInfo?.title}</p>
             <div className="flex items-center mt-2">
               <div className="flex items-center">
                 <span className="mt-1 ml-1 text-[#BBDD23] text-[13px] font-yekan">

@@ -21,7 +21,7 @@ function Product({ isDiscount, className, productInfo }) {
         />
       </div>
       <div className="p-1">
-        <p className="text-[14px] text-[#121212]">{productInfo?.title}</p>
+        <p className="text-[14px] text-[#121212] font-yekan">{productInfo?.title}</p>
         <div className="flex items-center justify-between mt-2">
           <span className="text-main_color text-[13px] lg:text-[16px]">
             {productInfo?.price.toLocaleString()} تومان
