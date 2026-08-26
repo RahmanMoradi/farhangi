@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { Icon } from "@iconify/react";
 import axios from "axios";
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "@/Components/Navbar/Navbar";
 import Menu from "@/Components/menu/Menu";
 import Footer from "@/Components/Footer/Footer";
@@ -58,34 +57,6 @@ function Categories() {
         <Navbar />
 
         <div className="relative mt-3">
-          <Link href="/chat-bot" className="hidden cursor-pointer lg:block">
-            <div className="relative flex w-full items-center rounded-[8px]">
-              <Image
-                width={1000}
-                height={1000}
-                src="/images/categories/chatbot-bg.svg"
-                alt="chatbot-bg"
-              />
-              <div className="absolute top-[11px] right-5 flex items-center gap-3">
-                <Image
-                  width={1000}
-                  height={1000}
-                  src="/images/categories/chatbot.svg"
-                  alt="chatbot"
-                  className="w-14"
-                />
-                <div className="flex flex-col gap-1">
-                  <span className="text-[15px] font-[700] text-[#C62828]">
-                    جستجوی هوشمند محصول
-                  </span>
-                  <span className="w-52 text-[13px] text-[#595959]">
-                    محصول مورد نظر خودتون رو توسط چت‌بات مهران استور پیدا کنید
-                  </span>
-                </div>
-              </div>
-            </div>
-          </Link>
-
           <p className="mt-5 text-[14px] text-black_12">دسته‌بندی‌ها</p>
 
           {/* ✅ Parent categories loop */}
