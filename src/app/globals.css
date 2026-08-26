@@ -58,6 +58,11 @@
     font-style: normal;
 }
 
+html,
+body {
+    font-family: 'yekan-bakh', sans-serif;
+}
+
 .body {
     margin: 15px 45px 0;
 }
