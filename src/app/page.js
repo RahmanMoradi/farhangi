@@ -4,7 +4,6 @@ import Category from "@/Components/Home/Category/Category";
 import Features from "@/Components/Home/Features/Features";
 import Slider from "@/Components/Home/Slider/Slider";
 import Menu from "@/Components/menu/Menu";
-import InstallmentCalculation from "@/Components/Home/InstallmentCalculation/InstallmentCalculation";
 import Image from "next/image";
 import Brands from "@/Components/Home/Brands/Brands";
 import Customers from "@/Components/Home/Customers/Customers";
@@ -94,10 +93,6 @@ function Home() {
               <span className="mt-4 text-sm font-bold md:text-base">جزئیات گارانتی</span>
             </div>
           </div>
-        </div>
-
-        <div id="payment">
-          <InstallmentCalculation />
         </div>
 
         <div id="customers" className="lg:mt-16 mt-8">
