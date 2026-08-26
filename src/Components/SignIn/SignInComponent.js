@@ -10,6 +10,7 @@ import Input from "@/Components/ui/Input";
 import Image from "next/image";
 import axios from "axios";
 import useAlert from "@/Hooks/useAlert";
+import Menu from "@/Components/menu/Menu";
 
 function SignInComponent() {
   const searchParams = useSearchParams();
@@ -145,6 +146,7 @@ function SignInComponent() {
           src="/images/sign-in/login.webp"
         />
       </div>
+      <Menu />
     </div>
   );
 }
