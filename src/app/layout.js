@@ -7,7 +7,7 @@ import { CartProvider } from "@/Context/CartContext";
 import { SessionProvider } from "@/Context/SessionContext";
 
 export const metadata = {
-  title: "Farhangi Store",
+  title: "Farhangi",
   description: "فروشگاه فرهنگی",
 };
 

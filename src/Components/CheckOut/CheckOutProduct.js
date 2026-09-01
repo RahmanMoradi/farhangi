@@ -41,7 +41,7 @@ function CheckOutProduct({ className, cartInfo }) {
           <span className="ml-1.5">
             <Icon icon="fa6-solid:truck-fast" width="25" height="25" />
           </span>
-          <span>ارسال فرهنگی استور</span>
+          <span>ارسال فرهنگی</span>
         </div>
         <div className="flex items-center gap-5 mt-1 text-[14px] lg:text-[16px] lg:mt-3">
           <span className="text-main_color text-[16px] font-bold font-yekan">

@@ -110,7 +110,7 @@ const DesktopNavbar = ({ userInfo, token, cartCount }) => {
         <Link href="/product" className="text-Gray59 mr-7 cursor-pointer">
           فروشگاه
         </Link>
-        {/*<Link href="/why-farhangi-store" className="text-Gray59 mr-7 cursor-pointer">
+        {/*<Link href="/why-farhangi" className="text-Gray59 mr-7 cursor-pointer">
           چرا فروشگاه فرهنگی
         </Link>*/}
         {/*<Link
