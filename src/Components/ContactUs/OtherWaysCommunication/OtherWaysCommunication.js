@@ -33,7 +33,7 @@ function OtherWaysCommunication() {
           </div>
           <span className="mr-1.5 text-[16px] font-semibold font-yekan">آدرس ایمیل</span>
         </div>
-        <Link href="mailto:mehranstore.official@gmail.com" className="text-Gray59 mt-1 cursor-pointer font-yekan">
+        <Link href="mailto:farhangistore.official@gmail.com" className="text-Gray59 mt-1 cursor-pointer font-yekan">
           _____
         </Link>
       </div>

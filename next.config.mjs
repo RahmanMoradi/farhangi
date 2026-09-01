@@ -6,7 +6,7 @@ const nextConfig = {
             'localhost',
             '192.168.1.220',
             'api.minnsdev.ir',
-            'api.mehranstore.com',
+            'api.farhangistore.com',
             'api.devprojects.ir'
         ],
         remotePatterns: [
