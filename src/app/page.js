@@ -14,11 +14,10 @@ import Navbar from "@/Components/Navbar/Navbar";
 import Footer from "@/Components/Footer/Footer";
 import axios from "axios";
 
-const CUSTOMERS_ARRAY = [1, 2, 3, 4];
-
 function Home() {
   // State Management
   const [products, setProducts] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   // Fetching products
   const getProducts = useCallback(async () => {
@@ -35,9 +34,19 @@ function Home() {
     }
   }, []);
 
+  const getPosts = useCallback(async () => {
+    try {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts`);
+      setPosts(response.data.data || []);
+    } catch (err) {
+      console.error("Error fetching posts:", err.response?.data?.message || err.message);
+    }
+  }, []);
+
   useEffect(() => {
     getProducts();
-  }, [getProducts]);
+    getPosts();
+  }, [getProducts, getPosts]);
 
   return (
     <>
@@ -101,7 +110,7 @@ function Home() {
       </div>
 
       <div id="blog">
-        <ArticlesSlider text="مقالات" products_info={CUSTOMERS_ARRAY} />
+        <ArticlesSlider text="مقالات" posts={posts} />
       </div>
       <Menu select="home" />
     </div>

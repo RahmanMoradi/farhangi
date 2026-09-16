@@ -88,7 +88,7 @@ function Footer() {
             <div className="flex flex-col lg:mr-16">
               <span className="text-white font-yekan font-semibold">دسترسی سریع</span>
               <div className="flex flex-col gap-4 mt-3">
-                <Link href="#" className="text-[#C4C4C4] font-yekan">مقالات</Link>
+                <Link href="/blog" className="text-[#C4C4C4] font-yekan">مقالات</Link>
                 <Link href="/about-us" className="text-[#C4C4C4] font-yekan">درباره ما</Link>
                 <Link href="/contact-us" className="text-[#C4C4C4] font-yekan">تماس باما</Link>
                 <Link href="/faq" className="text-[#C4C4C4] font-yekan">سوالات متداول</Link>

@@ -15,25 +15,27 @@ import Menu from "@/Components/menu/Menu";
 function SignInComponent() {
   const searchParams = useSearchParams();
   const number = searchParams.get("number");
+  const expiresAt = searchParams.get("expires_at");
   const router = useRouter();
   const { login } = useUser();
 
   const [isBtn, setIsBtn] = useState(false);
   const [phone_number, setPhone_number] = useState("");
   const [code, setCode] = useState("");
+  const [secondsLeft, setSecondsLeft] = useState(0);
   const { showAlert } = useAlert();
 
   const loginFunc = () => {
     setIsBtn(false);
-    let body = {
-      mobile: phone_number,
-    };
+    const mobile = number || phone_number;
+    let body = { mobile };
 
     axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, body)
       .then((res) => {
         showAlert(res.data.message, "success", 2300);
-        router.push(`?number=${phone_number}`);
+        setCode("");
+        router.push(`?number=${mobile}&expires_at=${encodeURIComponent(res.data.data.expires_at)}`);
       })
       .catch((err) => {
         showAlert(err.response.data.message, "warning", 2300);
@@ -58,6 +60,13 @@ function SignInComponent() {
         showAlert(err.response.data.message, "warning", 2500);
       });
   };
+
+  useEffect(() => {
+    const update = () => setSecondsLeft(Math.max(0, Math.ceil((new Date(expiresAt).getTime() - Date.now()) / 1000)));
+    update();
+    const interval = setInterval(update, 1000);
+    return () => clearInterval(interval);
+  }, [expiresAt]);
 
   useEffect(() => {
     if (phone_number.length === 11) {
@@ -103,7 +112,11 @@ function SignInComponent() {
             ویرایش شماره
           </div>
         )}
-        {/* {number && <div className="mt-2">1:25</div>} */}
+        {number && (
+          <div className="mt-2 text-sm font-yekan text-Gray59">
+            {secondsLeft ? `${secondsLeft} ثانیه تا انقضای کد` : "کد منقضی شده است"}
+          </div>
+        )}
         <div className="my-5">
           {number ? (
             <div className="flex items-center justify-between gap-3 w-[325px]">
@@ -121,12 +134,22 @@ function SignInComponent() {
         </div>
         <div>
           {number ? (
-            <Button
-              onClick={verify}
-              text="ورود"
-              className="w-[325px] py-2"
-              inner={true}
-            />
+            <>
+              <Button
+                onClick={verify}
+                text="ورود"
+                className="w-[325px] py-2"
+                inner={true}
+              />
+              <button
+                type="button"
+                onClick={loginFunc}
+                disabled={secondsLeft > 0}
+                className="mt-3 text-sm font-yekan text-main_color disabled:cursor-not-allowed disabled:text-Gray59"
+              >
+                ارسال مجدد کد
+              </button>
+            </>
           ) : (
             <Button
               text="ارسال کد"

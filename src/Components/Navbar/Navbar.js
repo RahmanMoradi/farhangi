@@ -149,12 +149,7 @@ const Navbar = () => {
             >
               محصولات
             </Link>
-            {/*<Link
-              href="#"
-              className="py-3.5 text-gray-700 hover:text-gray-900 text-black_12 border-b-[1px] border-b-light_brown_200"
-            >
-              محاسبه اقساط
-            </Link>*/}
+
             <Link
               href="/blog"
               className="py-3.5 text-gray-700 hover:text-gray-900 text-black_12 border-b-[1px] border-b-light_brown_200"

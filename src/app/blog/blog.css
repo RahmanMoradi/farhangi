@@ -1,0 +1,73 @@
+.blog-page {
+  min-height: 100vh;
+  background: #f8f8f8;
+  color: #222;
+  font-family: yekan-bakh, sans-serif;
+}
+
+.blog-index {
+  width: min(100% - 56px, 1060px);
+  margin: 0 auto;
+  padding: 24px 0 64px;
+}
+
+.blog-hero {
+  height: 150px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  color: white;
+  background: linear-gradient(#0009, #0009), url('/images/home/banner/main-hero.webp') center / cover;
+}
+
+.blog-hero h1 { margin: 0; font-size: 26px; font-weight: 600; }
+.blog-hero h1::after { content: ''; display: inline-block; width: 28px; height: 1px; margin-right: 10px; vertical-align: middle; background: currentColor; }
+
+.blog-controls { display: flex; justify-content: space-between; align-items: center; margin: 22px 0 28px; gap: 16px; }
+.blog-controls label { order: -1; display: flex; align-items: center; gap: 8px; width: min(100%, 400px); padding: 10px 13px; background: #f1f1f1; border-radius: 5px; color: #777; }
+.blog-controls input { width: 100%; border: 0; outline: 0; background: transparent; font: inherit; font-size: 14px; }
+.blog-controls button { display: flex; align-items: center; gap: 5px; border: 1px solid #e5e5e5; border-radius: 5px; padding: 9px 12px; background: white; font: inherit; font-size: 13px; }
+
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 20px; }
+.blog-card { display: block; min-width: 0; text-align: center; text-decoration: none; color: inherit; }
+.blog-card > img { display: block; width: 100%; aspect-ratio: 2.45 / 1; border-radius: 8px; object-fit: cover; }
+.blog-card h2 { margin: 12px 0 6px; font-size: 15px; font-weight: 600; }
+.blog-card p { display: -webkit-box; overflow: hidden; margin: 0; color: #737373; font-size: 12px; line-height: 1.85; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+.blog-card footer, .blog-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 11px; color: #1479c9; font-size: 12px; }
+.blog-card footer span, .blog-meta span { display: flex; align-items: center; gap: 4px; }
+.blog-card svg, .blog-meta svg { width: 16px; height: 16px; }
+.blog-empty { margin-top: 48px; text-align: center; color: #777; }
+
+.blog-show { width: min(100% - 56px, 1060px); margin: 0 auto; padding: 28px 0 80px; }
+.blog-show article { margin: 0 auto; }
+.blog-show-image { display: block; width: 100%; aspect-ratio: 2.55 / 1; border-radius: 10px; object-fit: cover; }
+.blog-show h1 { margin: 16px 0 22px; font-size: 23px; font-weight: 700; }
+.blog-content { color: #343434; font-size: 15px; line-height: 2.2; }
+.blog-content p { margin: 0; padding: 16px 0; border-bottom: 1px solid #e2e2e2; }
+.blog-content figure { margin: 0; }
+.blog-content img { max-width: 100%; height: auto; border-radius: 8px; }
+.blog-show-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; font-size: 14px; }
+.blog-show-footer span { display: flex; gap: 12px; font-size: 20px; }
+.blog-show-footer a { color: #222; text-decoration: none; }
+.blog-footer { height: 34px; border-top: 1px solid #c75a5a; background: #211d1d; }
+
+@media (max-width: 700px) {
+  .blog-index { width: min(100% - 24px, 480px); padding-top: 0; }
+  .blog-hero { height: 112px; margin-inline: -12px; border-radius: 0 0 9px 9px; }
+  .blog-hero h1 { font-size: 20px; }
+  .blog-controls { gap: 0; margin: 12px 0 18px; border: 1px solid #e4e4e4; border-radius: 7px; background: white; }
+  .blog-controls label { order: 0; width: auto; flex: 1; padding: 11px; background: transparent; }
+  .blog-controls button { border: 0; border-right: 1px solid #e4e4e4; border-radius: 0; padding: 11px; white-space: nowrap; }
+  .blog-grid { grid-template-columns: 1fr; gap: 14px; }
+  .blog-card { padding: 10px; border: 1px solid #ededed; border-radius: 8px; background: white; box-shadow: 0 2px 6px #00000008; }
+  .blog-card > img { aspect-ratio: 2.15 / 1; }
+  .blog-card h2 { font-size: 15px; }
+  .blog-card p { font-size: 12px; }
+  .blog-card footer { padding-top: 9px; border-top: 1px solid #ededed; }
+  .blog-show { width: min(100% - 24px, 600px); padding-top: 14px; }
+  .blog-show-image { aspect-ratio: 1.85 / 1; }
+  .blog-show h1 { margin: 14px 0; font-size: 18px; }
+  .blog-content { font-size: 14px; line-height: 2.05; }
+  .blog-content p { padding: 14px 0; }
+  .blog-show-footer { margin-top: 22px; }
+}

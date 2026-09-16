@@ -59,7 +59,7 @@ function OrderProduct({ orders }) {
                         className="w-3.5 h-3.5"
                       />
                       <span className="text-Gray59 text-[12px] font-yekan">نوع پرداخت:</span>
-                      <span className="text-Gray59 text-[12px] font-yekan">{order?.type === "cash" ? "نقدی" : "اقساط"}</span>
+                      <span className="text-Gray59 text-[12px] font-yekan">نقدی</span>
                     </div>
                   </div>
                 </div>

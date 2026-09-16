@@ -18,16 +18,6 @@ function Features() {
     }
   };
 
-  const scrollToPayment = (e) => {
-    e.preventDefault();
-    const payment = document.getElementById("payment");
-    if (payment) {
-      window.scrollTo({
-        top: payment.offsetTop - 40,
-        behavior: "smooth",
-      });
-    }
-  };
 
   const scrollToCustomers = (e) => {
     e.preventDefault();
@@ -61,16 +51,7 @@ function Features() {
               "linear-gradient(90deg,rgba(219, 219, 219, 1) 70%, #00aeef 100%)",
           }}
         ></div>
-        <Link 
-          href="#payment"
-          onClick={scrollToPayment}
-        >
-          <div
-            className="bg-main_color text-white relative rounded-full cursor-pointer z-30 w-12 h-12 flex items-center justify-center"
-          >
-            <Icon icon="solar:user-id-bold" width="30" height="30" alt="profile-icon" />
-          </div>
-        </Link>
+
         <Link
           className="bg-light_brown_200 text-[#ced4da] hover:bg-second_color hover:text-white rounded-full 
           cursor-pointer z-30 w-12 h-12 flex items-center justify-center transition-all duration-300"
@@ -104,17 +85,7 @@ function Features() {
               "linear-gradient(90deg,rgba(219, 219, 219, 1) 70%, #ec008c 100%)",
           }}
         ></div>
-        <Link 
-          href="#payment"
-          onClick={scrollToPayment}
-        >
-          <div
-            className="bg-main_color text-white relative rounded-full cursor-pointer z-30 w-12 h-12 flex items-center justify-center"
-          >
-            <Icon icon="solar:user-id-bold" width="30" height="30" alt="profile-icon" />
-          </div>
-          <h2 className="text-second_color text-[15px] font-semibold font-yekan absolute top-2.5 right-12 bg-[#FFFFFF] z-10 px-2.5">شرایط گارانتی و اقساط</h2>
-        </Link>
+
         <div className="flex items-center justify-between w-96">
           <Link
             className="group bg-second_color text-white hover:bg-second_color rounded-full 

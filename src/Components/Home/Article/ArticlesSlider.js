@@ -9,7 +9,7 @@ import Title from "@/Components/Home/Title/Title";
 import ArticleBox from "./ArticleBox";
 import { Icon } from "@iconify/react";
 
-function ArticlesSlider({ products_info, text }) {
+function ArticlesSlider({ posts, text }) {
   return (
     <>
       <div className="mt-8 lg:mt-24">
@@ -48,9 +48,9 @@ function ArticlesSlider({ products_info, text }) {
           modules={[Keyboard]}
           className="mySwiper mt-3"
         >
-          {products_info.map((e) => (
-            <SwiperSlide key={e}>
-              <ArticleBox />
+          {posts.map((post) => (
+            <SwiperSlide key={post.id}>
+              <ArticleBox post={post} />
             </SwiperSlide>
           ))}
         </Swiper>

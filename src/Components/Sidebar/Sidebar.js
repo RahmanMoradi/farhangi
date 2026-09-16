@@ -27,12 +27,7 @@ function Sidebar() {
             صفحه اصلی
           </Link>
         </div>
-        <div className="text-[17px] pb-2 mb-6 relative">
-          <Link href="#">
-            <div className="absolute bg-gradient-to-r from-white via-light_brown_600 to-white w-full h-[1px] bottom-0"></div>
-            محاسبه اقساط
-          </Link>
-        </div>
+
         <div className="text-[17px] pb-2 mb-6 relative">
           <Link href="/blog">
             <div className="absolute bg-gradient-to-r from-white via-light_brown_600 to-white w-full h-[1px] bottom-0"></div>
