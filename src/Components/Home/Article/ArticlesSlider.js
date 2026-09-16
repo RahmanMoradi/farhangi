@@ -8,6 +8,7 @@ import { Keyboard } from "swiper/modules";
 import Title from "@/Components/Home/Title/Title";
 import ArticleBox from "./ArticleBox";
 import { Icon } from "@iconify/react";
+import Link from "next/link";
 
 function ArticlesSlider({ posts, text }) {
   return (
@@ -56,10 +57,10 @@ function ArticlesSlider({ posts, text }) {
         </Swiper>
       </div>
       <div className="flex items-center justify-center mb-16">
-        <div className="text-white bg-gradient-to-l from-main_color to-[#ec008e8c] rounded-xl p-2 mt-4 mb-5 hidden lg:flex gap-2 font-yekan">
+        <Link href="/blog" className="text-white bg-gradient-to-l from-main_color to-[#ec008e8c] rounded-xl p-2 mt-4 mb-5 hidden lg:flex gap-2 font-yekan">
           مشاهده بیشتر
           <Icon icon="mynaui:arrow-left" width="24" height="24" />
-        </div>
+        </Link>
       </div>
     </>
   );
