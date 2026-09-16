@@ -139,6 +139,7 @@ function SignInComponent() {
                 onClick={verify}
                 text="ورود"
                 className="w-[325px] py-2"
+                disabled={code.length !== 4}
                 inner={true}
               />
               <button
