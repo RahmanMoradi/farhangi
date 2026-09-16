@@ -4,6 +4,10 @@ import { useRouter } from "next/navigation";
 import { Icon } from "@iconify/react";
 import axios from "axios";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 import Menu from "@/Components/menu/Menu";
 import Button from "@/Components/ui/Button";
 import 'yet-another-react-lightbox/styles.css';
@@ -205,12 +209,23 @@ function Details({ params }) {
         />
         {/* First column */}
         <div className="col-span-1">
-          <div className="w-full h-[270px] md:h-[300px] xl:w-full xl:h-[550px] relative">
+          <Swiper
+            className="w-full h-[270px] md:h-[300px] xl:hidden"
+            modules={[Pagination]}
+            pagination={{ clickable: true }}
+          >
+            {(productInfo?.images || []).filter(Boolean).map((image, index) => (
+              <SwiperSlide key={image} className="relative">
+                <Image fill src={image} alt={`${productInfo?.title || "Product"} ${index + 1}`} className="object-contain" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <div className="hidden xl:block w-full h-[550px] relative">
             <Image
               fill
               src={productInfo?.images[0] ? productInfo?.images[0] : null}
               alt="main-image"
-              className="object-contain md:object-cover"
+              className="object-cover"
               style={{ borderRadius: '10px' }}
             />
           </div>
