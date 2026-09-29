@@ -335,9 +335,12 @@ function Details({ params }) {
         <div className="col-span-2 mt-10">
           <span className="text-[#3f4064] text-[16px] font-bold font-yekan">توضیحات</span>
           <div className="mt-2">
-            <p className="text-Gray59 text-[14px] font-yekan whitespace-pre-line mt-1 text-justify w-full">
-              {isDescriptionExpanded ? description : truncateDescription(description)}
-            </p>
+            <div
+              className="text-Gray59 text-[14px] font-yekan whitespace-pre-line mt-1 text-justify w-full"
+              dangerouslySetInnerHTML={{
+                __html: isDescriptionExpanded ? description : truncateDescription(description),
+              }}
+            />
             {isTruncated && (
               <button
                 className="flex text-blue-600 hover:text-blue-800 text-[13px] font-yekan font-medium mt-2 focus:outline-none items-center"
