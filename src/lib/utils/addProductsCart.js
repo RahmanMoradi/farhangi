@@ -9,6 +9,7 @@ export const addProductsCart = async (token) => {
       let body = {
         product_id: e.id,
         quantity: e.quantity,
+        has_guarantee: Boolean(e.has_guarantee),
       };
 
       axios.post(`${process.env.NEXT_PUBLIC_API_URL}/cart`, body, {
@@ -23,7 +24,7 @@ export const addProductsCart = async (token) => {
   }
 };
 
-export const addProductsCartToLocalStorage = async (quantity, productInfo) => {
+export const addProductsCartToLocalStorage = async (quantity, productInfo, hasGuarantee = false) => {
   let storedProducts = localStorage.getItem("products");
   let products = storedProducts ? JSON.parse(storedProducts) : [];
 
@@ -33,9 +34,9 @@ export const addProductsCartToLocalStorage = async (quantity, productInfo) => {
 
   if (quantity > 0) {
     if (existingProductIndex !== -1) {
-      products[existingProductIndex].quantity = quantity;
+      products[existingProductIndex] = { ...productInfo, quantity, has_guarantee: hasGuarantee };
     } else {
-      products.push({ ...productInfo, quantity });
+      products.push({ ...productInfo, quantity, has_guarantee: hasGuarantee });
     }
   } else {
     if (existingProductIndex !== -1) {

@@ -20,7 +20,7 @@ function ShoppingCartProduct({
 
     try {
       setCount(newCount);
-      await updateCart(cartInfo.product.id, newCount);
+      await updateCart(cartInfo.product.id, newCount, cartInfo.has_guarantee);
     } catch (err) {
       console.log(err);
     }
@@ -66,7 +66,13 @@ function ShoppingCartProduct({
           <span className="ml-1.5">
             <Icon icon="fa6-solid:truck-fast" width="25" height="25" />
           </span>
-          <span>ارسال توسط فروشگاه فرهنگی</span>
+          <span>
+            ارسال توسط {({
+              post: 'پست',
+              express_post: 'پست پیشتاز',
+              tipax: 'تیپاکس',
+            }[cartInfo?.product?.shipping_method] || 'پست')}
+          </span>
         </div>
         <div className="flex items-center justify-between mt-1 text-[14px] lg:text-[16px] lg:justify-end lg:flex-row-reverse lg:mt-3">
           <div className="flex items-center gap-2">

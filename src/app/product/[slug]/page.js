@@ -5,15 +5,14 @@ import { Icon } from "@iconify/react";
 import axios from "axios";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
+import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Menu from "@/Components/menu/Menu";
 import Button from "@/Components/ui/Button";
-import 'yet-another-react-lightbox/styles.css';
 import Footer from "@/Components/Footer/Footer";
 import Navbar from "@/Components/Navbar/Navbar";
-import Lightbox from 'yet-another-react-lightbox';
 import CommentModal from "@/Components/Comment/CommentModal";
 import AddProduct from "@/Components/ProductComponents/AddProduct";
 import CommentBox from "@/Components/ProductComponents/Comment/CommentBox";
@@ -48,9 +47,6 @@ const colorMap = {
 function Details({ params }) {
   {/* State Management */}
   const { slug } = React.use(params);
-  const [isOpen, setIsOpen] = useState(false);
-  const [photoIndex, setPhotoIndex] = useState(0);
-  const [imagesToShow, setImagesToShow] = useState([]);
   const [isShowModal, setIsShowModal] = useState(false);
   const [productInfo, setProductInfo] = useState(null);
   const [selectedColorId, setSelectedColorId] = useState(null);
@@ -64,6 +60,7 @@ function Details({ params }) {
   const [seeMoreComments, setSeeMoreComments] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const [isInsuranceSelected, setIsInsuranceSelected] = useState(false);
+  const [isGuaranteeSelected, setIsGuaranteeSelected] = useState(false);
   const router = useRouter();
 
   {/* Fetching product */}
@@ -76,6 +73,7 @@ function Details({ params }) {
 
       setFinalPrice(product.price);
       setSelectedColorId(null);
+      setIsGuaranteeSelected(false);
     } catch (err) {
       console.error("خطا در دریافت محصول:", err);
     }
@@ -87,26 +85,6 @@ function Details({ params }) {
       getProduct();
     }
   }, [slug]);
-
-
-  {/* Image handling */}
-  useEffect(() => {
-    if (productInfo?.images && Array.isArray(productInfo.images)) {
-      const images = productInfo.images
-        .filter((url) => url && typeof url === "string")
-        .slice(1, 6)
-        .map((url, index) => ({
-          id: index + 1,
-          url,
-        }));
-      setImagesToShow(images);
-    } else {
-      setImagesToShow([]);
-    }
-  }, [productInfo]);
-
-  const lightboxSlides = imagesToShow.map((img) => ({ src: img.url }));
-  const hasMoreImages = imagesToShow.length > 4;
 
 
   {/* Description handling */}
@@ -142,7 +120,9 @@ function Details({ params }) {
     const discountedPrice = productInfo.discount_price;
     const discountPercentage = productInfo.discount_percentage;
   
-    const finalPrice = (hasDiscount ? discountedPrice : mainPrice);
+    const finalPrice = isGuaranteeSelected && hasGuarantee
+      ? productInfo.guarantee_price
+      : (hasDiscount ? discountedPrice : mainPrice);
 
     // Save in states so it can be used outside of useEffect
     setMainPrice(mainPrice);
@@ -159,7 +139,7 @@ function Details({ params }) {
     console.log("✅ mainPrice:", mainPrice);
     console.log("✅ finalPrice:", finalPrice);
 
-  }, [productInfo, isInsuranceSelected]);
+  }, [productInfo, isInsuranceSelected, isGuaranteeSelected]);
 
 
   {/* Handling color select*/}
@@ -205,13 +185,15 @@ function Details({ params }) {
           mainPrice={mainPrice}
           productInfo={productInfo}
           discountPercentage={discountPercentage}
-          inventory={inventory} 
+          inventory={inventory}
+          hasGuarantee={isGuaranteeSelected}
         />
         {/* First column */}
         <div className="col-span-1">
           <Swiper
-            className="w-full h-[270px] md:h-[300px] xl:hidden"
-            modules={[Pagination]}
+            className="w-full h-[270px] md:h-[400px] xl:h-[550px]"
+            modules={[Navigation, Pagination]}
+            navigation
             pagination={{ clickable: true }}
           >
             {(productInfo?.images || []).filter(Boolean).map((image, index) => (
@@ -220,68 +202,6 @@ function Details({ params }) {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="hidden xl:block w-full h-[550px] relative">
-            <Image
-              fill
-              src={productInfo?.images[0] ? productInfo?.images[0] : null}
-              alt="main-image"
-              className="object-cover"
-              style={{ borderRadius: '10px' }}
-            />
-          </div>
-          <div className="hidden xl:flex xl:items-center gap-2 mt-4 w-full">
-            {imagesToShow.length > 0 ? (
-              imagesToShow.map((img, index) => (
-                <div key={img.id} className="relative">
-                  {index < 4 || !hasMoreImages ? (
-                    <Image
-                      src={img.url}
-                      alt={`Product image ${img.id}`}
-                      width={72}
-                      height={72}
-                      className="w-[72px] h-[72px] border border-[#e0e0e2] rounded p-[3px] object-cover cursor-pointer"
-                      onClick={() => {
-                        setPhotoIndex(img.id);
-                        setIsOpen(true);
-                      }}
-                      onError={() => console.error(`Failed to load image: ${img.url}`)}
-                    />
-                  ) : (
-                    <div
-                      className="relative w-[72px] h-[72px] border border-[#e0e0e2] rounded p-[3px] cursor-pointer"
-                      onClick={() => {
-                        setPhotoIndex(img.id);
-                        setIsOpen(true);
-                      }}
-                    >
-                      <Image
-                        src={img.url}
-                        alt="More images"
-                        width={72}
-                        height={72}
-                        className="w-full h-full object-cover blur-sm"
-                        onError={() => console.error(`Failed to load image: ${img.url}`)}
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-2xl font-bold text-gray-800">...</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))
-            ) : (
-              <div>تصویری برای نمایش وجود ندارد</div>
-            )}
-          </div>
-          {isOpen && (
-           <Lightbox
-             open={isOpen}
-             close={() => setIsOpen(false)}
-             slides={lightboxSlides}
-             index={photoIndex}
-             onIndexChange={(index) => setPhotoIndex(index)}
-           />
-          )}
         </div>
         {/* Second column */}
         <div className="col-span-1">
@@ -330,6 +250,16 @@ function Details({ params }) {
                 </div>
               ))}
             </div>
+            {hasGuarantee ? (
+              <label className="mt-4 flex cursor-pointer items-center gap-2 rounded-xl border border-light_brown_600 p-3 font-yekan text-[13px] text-[#3f4064]">
+                <input
+                  type="checkbox"
+                  checked={isGuaranteeSelected}
+                  onChange={(event) => setIsGuaranteeSelected(event.target.checked)}
+                />
+                خرید با گارانتی {guaranteeDuration} ماهه {guarantee} — {Number(productInfo.guarantee_price).toLocaleString()} تومان
+              </label>
+            ) : null}
             {/* Product parameters */}
             <div className="p-2.5 mt-4 border border-light_brown_600 rounded-xl">
               <span className="text-[#3f4064] text-[15px] font-semibold font-yekan">مشخصات کالا</span>
@@ -345,6 +275,7 @@ function Details({ params }) {
               productInfo={productInfo}
               discountPercentage={discountPercentage}
               inventory={inventory}
+              hasGuarantee={isGuaranteeSelected}
             />
           </div>
         </div>
@@ -383,25 +314,18 @@ function Details({ params }) {
                     />
                   </div>
                 </div>
-                <div className="mt-2.5">
-                  <div className="flex">
-                    <Icon icon="material-symbols:local-shipping" width="20" height="20" className="text-[#e6123d]" />
-                    <span className="text-[12px] text-[#81858b] font-medium font-yekan mt-[2px] pr-1.5">
-                      ارسال توسط پست
-                    </span>
-                  </div>
-                  <div className="flex mt-2">
-                    <Icon icon="tabler:rocket" width="20" height="20" className="text-[#1028ff]" />
-                    <span className="text-[12px] text-[#81858b] font-medium font-yekan mt-[2px] pr-1.5">
-                      ارسال توسط پست پیشتاز
-                    </span>
-                  </div>
-                  <div className="flex mt-2">
-                    <Icon icon="material-symbols:fast-forward" width="20" height="20" className="text-[#4d4d4d]" />
-                    <span className="text-[12px] text-[#81858b] font-medium font-yekan mt-[2px] pr-1.5">
-                      ارسال توسط تیپاکس
-                    </span>
-                  </div>
+                <div className="mt-2.5 flex">
+                  <Icon icon="material-symbols:local-shipping" width="20" height="20" className="text-[#e6123d]" />
+                  <span className="text-[12px] text-[#81858b] font-medium font-yekan mt-[2px] pr-1.5">
+                    {({
+                      post: 'ارسال توسط پست',
+                      express_post: 'ارسال توسط پست پیشتاز',
+                      tipax: 'ارسال توسط تیپاکس',
+                    }[productInfo?.shipping_method] || 'ارسال توسط پست')}
+                    {Number(productInfo?.shipping_fee || 0) === 0
+                      ? ' (پس‌کرایه)'
+                      : ` — هزینه ارسال: ${Number(productInfo.shipping_fee).toLocaleString()} تومان`}
+                  </span>
                 </div>
               </div>
             </div>

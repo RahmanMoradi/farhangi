@@ -13,7 +13,8 @@ function AddProduct({
     finalPrice, 
     hasDiscount, 
     mainPrice, 
-    discountPercentage 
+    discountPercentage,
+    hasGuarantee = false
   }) {
   {/* State Management */}
   const [isProductInCart, setIsProductInCart] = useState();
@@ -38,7 +39,7 @@ function AddProduct({
   
     if (token) {
       try {
-        await updateCart(productInfo.id, quantity);
+        await updateCart(productInfo.id, quantity, hasGuarantee);
   
         if (quantity > 0) {
           setIsProductInCart({ product: productInfo, quantity });
@@ -57,7 +58,7 @@ function AddProduct({
         showAlert(err.response?.data?.message || "خطا در افزودن به سبد", "error", 2300);
       }
     } else {
-      addProductsCartToLocalStorage(quantity, productInfo);
+      addProductsCartToLocalStorage(quantity, productInfo, hasGuarantee);
       loadAndCheckProduct();
     }
   };  

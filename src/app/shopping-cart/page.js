@@ -20,8 +20,11 @@ export default function ShoppingCart() {
   const { token } = useUser();
 
   {/* Total price and single product price setting */}
-  const postCharge = 30000;
   const price = cart.reduce((sum, item) => sum + item.price * item.quantity, 0) || 0;
+  const postCharge = cart.reduce(
+    (sum, item) => sum + (item.product.cash_on_delivery ? 0 : Number(item.product.shipping_fee || 0)),
+    0
+  );
   const total = price + postCharge;
 
   {/* Submitting and redirecting */}
@@ -53,7 +56,7 @@ export default function ShoppingCart() {
         </div>
         <div className="flex items-center justify-between py-3.5 mx-3.5 border-b-2 border-b-light_brown_600">
           <span>هزینه پست</span>
-          <span>{postCharge.toLocaleString()} تومان</span>
+          <span>{postCharge === 0 ? 'پس‌کرایه' : `${postCharge.toLocaleString()} تومان`}</span>
         </div>
         <div className="flex items-center justify-between py-3.5 mx-3.5 text-main_color">
           <span>جمع سبد خرید</span>

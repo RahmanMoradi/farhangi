@@ -67,19 +67,28 @@ export default function Slider() {
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper rounded-xl mt-6">
         <SwiperSlide>
           <div 
-            className="relative w-full h-[260px] md:h-auto xl:h-[600px] cursor-pointer"
+            className="relative w-full cursor-pointer"
             onClick={handleCategoryClick}
           >
             <Image
-              src="/images/home/banner/main-hero.webp"
+              src="/images/home/hero/office-desktop.webp"
               alt="تجهیزات اداری فرهنگی"
               priority
               unoptimized
               width={1440}
-              height={804}
-              className="w-full h-full object-cover"
+              height={500}
+              className="hidden w-full md:block"
             />
-            <div className="absolute inset-y-0 right-[7%] flex w-[42%] flex-col justify-center text-right text-white" style={{ fontFamily: "yekan-bakh, sans-serif" }}>
+            <Image
+              src="/images/home/hero/office-mobile.webp"
+              alt="تجهیزات اداری فرهنگی"
+              priority
+              unoptimized
+              width={395}
+              height={256}
+              className="w-full md:hidden"
+            />
+            <div className="absolute inset-y-0 right-[7%] flex w-[42%] flex-col justify-center text-right text-stone-800" style={{ fontFamily: "yekan-bakh, sans-serif" }}>
               <h1 className="text-xl font-bold md:text-4xl">دفترتان را حرفه‌ای‌تر اداره کنید</h1>
               <p className="mt-2 text-xs md:text-lg">راهکارهای مطمئن چاپ، کپی و اسکن برای کار روزانه</p>
               <span className="mt-4 text-sm font-bold md:text-base">مشاهده محصولات</span>
@@ -89,18 +98,32 @@ export default function Slider() {
 
         <SwiperSlide>
           <div 
-            className="relative w-full h-[260px] md:h-auto xl:h-[600px] cursor-pointer"
+            className="relative w-full cursor-pointer"
             onClick={handleCategoryClick}
           >
             <Image
-              src="/images/home/slider/slider2.png"
-              alt="most-seller"
+              src="/images/home/hero/technology-desktop.webp"
+              alt="پرفروش‌ترین تجهیزات اداری"
               priority
               unoptimized
               width={1440}
-              height={400}
-              className="w-full h-full object-cover"
+              height={500}
+              className="hidden w-full md:block"
             />
+            <Image
+              src="/images/home/hero/technology-mobile.webp"
+              alt="پرفروش‌ترین تجهیزات اداری"
+              priority
+              unoptimized
+              width={395}
+              height={256}
+              className="w-full md:hidden"
+            />
+            <div className="absolute inset-y-0 right-[7%] flex w-[42%] flex-col justify-center text-right text-stone-800" style={{ fontFamily: "yekan-bakh, sans-serif" }}>
+              <h2 className="text-xl font-bold md:text-4xl">انتخاب‌های محبوب کسب‌وکارها</h2>
+              <p className="mt-2 text-xs md:text-lg">تجهیزات ضروری برای فروشگاهی حرفه‌ای‌تر</p>
+              <span className="mt-4 text-sm font-bold md:text-base">مشاهده محصولات</span>
+            </div>
           </div>
         </SwiperSlide>
 

@@ -19,7 +19,8 @@ export const CartProvider = ({ children }) => {
             setCart(products.map((product) => ({
                 product,
                 quantity: product.quantity,
-                price: product.discount_price || product.price,
+                price: product.has_guarantee ? product.guarantee_price : (product.discount_price || product.price),
+                has_guarantee: Boolean(product.has_guarantee),
             })));
             return;
         }
@@ -39,18 +40,18 @@ export const CartProvider = ({ children }) => {
         }
     }, [token]);
 
-    const updateCart = async (product_id, quantity) => {
+    const updateCart = async (product_id, quantity, has_guarantee = false) => {
         if (!token) {
             const product = cart.find((item) => item.product.id === product_id)?.product;
             if (product) {
-                await addProductsCartToLocalStorage(quantity, product);
+                await addProductsCartToLocalStorage(quantity, product, has_guarantee);
                 await getCart();
             }
             return;
         }
         try {
             await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/cart`, 
-                { product_id, quantity },
+                { product_id, quantity, has_guarantee },
                 { headers: { Authorization: token } }
             );
             await getCart();

@@ -63,7 +63,10 @@ function Checkout() {
   const { token } = useUser();
   const router = useRouter();
   const { showAlert  } = useAlert();
-  const postCharge = 30000;
+  const postCharge = cart.reduce(
+    (sum, item) => sum + (item.product.cash_on_delivery ? 0 : Number(item.product.shipping_fee || 0)),
+    0
+  );
   const total = price + postCharge;
 
   {/* Get cart data from localStorage */}
@@ -173,6 +176,7 @@ function Checkout() {
       getAddresses();
       getCartFromLocalStorage();
     }
+
   }, [token]);
 
   return (
@@ -297,7 +301,7 @@ function Checkout() {
               </div>
               <div className="flex items-center justify-between py-3.5 mx-1.5 border-b-2 border-b-light_brown_600">
                 <span>هزینه ارسال</span>
-                <span>{postCharge.toLocaleString()} تومان</span>
+                <span>{postCharge === 0 ? 'پس‌کرایه' : `${postCharge.toLocaleString()} تومان`}</span>
               </div>
               <div className="flex items-center justify-between py-3.5 mx-1.5 text-main_color">
                 <span>جمع سبد خرید</span>
